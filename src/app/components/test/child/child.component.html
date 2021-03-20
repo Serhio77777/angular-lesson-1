@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <button mat-button (click)="back()">Back</button>
+    <mat-card-title>{{child.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="child.src" alt="Photo">
+  <mat-card-content>
+    <p>
+      {{child.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="remove(child.id)">Delete</button>
+    <button mat-button (click)="change(child.id)">Edit</button>
+  </mat-card-actions>
+</mat-card>

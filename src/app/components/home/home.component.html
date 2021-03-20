@@ -1,0 +1,146 @@
+<nav>
+  <ul>
+    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/test" routerLinkActive="active">Test</a></li>
+    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+  </ul>
+</nav>
+<!-- <p>INSIDE {{prop}}</p>
+<p>INSIDE {{prop}}</p>
+
+<button (click)="testClick()">TesT</button>
+<input [(ngModel)]='prop'>
+
+<div class="example-button-row">
+  <button mat-raised-button>Basic</button>
+  <button mat-raised-button color="primary">Primary</button>
+  <button mat-raised-button color="accent">Accent</button>
+  <button mat-raised-button color="warn">Warn</button>
+  <button mat-raised-button disabled>Disabled</button>
+  <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+</div>
+
+<div class="test" *ngFor="let hero of heroes" (click)="testClick(hero)">
+  <div *ngIf="hero.a > 1">
+    <label>{{hero.a}}</label>
+    <p>{{hero.b}}</p>
+  </div>
+</div> -->
+
+<!-- account-id='{{id}}' -->
+<div>
+  <app-child
+    [testProps]="somePropsName"
+    [account-id]="id"
+    (everySecond)="onEverySecond()"
+    (everyFiveSeconds)="onEveryFiveSeconds()">
+  ></app-child>
+</div>
+
+<div>
+  <button class="test-button" (click)="eventBinding($event)">Save</button>
+  <button on-click="eventBinding($event)">on-click Save</button>
+  <button (click)="clickMessage=$event" clickable>click with myClick</button> {{clickMessage}}
+</div>
+
+
+<div>
+  {{currentItem.name}}
+  <input [value]="currentItem.name" (input)="changeCurrentItem($event.target.value)">
+</div>
+
+<div>
+  {{currentItem | json}}
+  <input [(ngModel)]='currentItem.name'>
+  <button *ngIf="!permission" mat-raised-button color="warn" (click)="changePermission(!permission)">Disable</button>
+  <button *ngIf="permission" mat-raised-button color="primary" (click)="changePermission(!permission)">Enable</button>
+  <button mat-raised-button color="primary" [disabled]="permission">Check</button>
+</div>
+
+<!-- <div>
+  {{currentItem | json}}
+  <input [value]="currentItem.name" (input)="changeCurrentItem($event.target.value)">
+</div> -->
+
+<div>
+  <form #itemForm="ngForm" (ngSubmit)="onTestSubmit(itemForm)">
+    <label for="name">Name <input class="form-control" name="name" ngModel required />
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div [hidden]="!itemForm.form.valid">
+    <p>{{ submitMessage }}</p>
+  </div>
+</div>
+
+<div>
+  <input #ref1 type="text" [(ngModel)]="a1" />
+
+  <ng-template [ngIf]="true">
+    <span>Value: {{ ref1.value }}</span>
+  </ng-template>
+</div>
+
+<div>
+  <mat-card>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>First Name:</mat-label>
+        <input matInput type="text" formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Last Name:</mat-label>
+        <input matInput type="text" formControlName="lastName">
+      </mat-form-field>
+
+      <div formGroupName="address">
+        <h3>Address</h3>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Street:</mat-label>
+          <input matInput type="text" formControlName="street">
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>City:</mat-label>
+          <input matInput type="text" formControlName="city">
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>State:</mat-label>
+          <input matInput type="text" formControlName="state">
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Zip Code:</mat-label>
+          <input matInput type="text" formControlName="zip">
+        </mat-form-field>
+    </div>
+
+      <p>
+        <button (click)="updateProfile()" mat-raised-button color="primary">Update Profile</button>
+      </p>
+
+      <div formArrayName="aliases">
+        <h3>Aliases</h3>
+        <button (click)="addAlias()" mat-raised-button color="success">Add Alias</button>
+
+        <div *ngFor="let alias of aliases.controls; let i=index">
+          <!-- The repeated alias template -->
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Alias:</mat-label>
+            <input matInput type="text" [formControlName]="i">
+          </mat-form-field>
+      </div>
+      </div>
+
+      <p>
+        Form Status: {{ profileForm.status }}
+      </p>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">Submit</button>
+    </form>
+  </mat-card>
+</div>
