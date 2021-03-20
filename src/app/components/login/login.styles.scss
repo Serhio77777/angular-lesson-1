@@ -1,0 +1,15 @@
+.login {
+  width: 400px;
+  margin: 15% auto;
+  mat-card {
+    h1 {
+      text-align: center;
+    }
+    form {
+      margin: 20px 10px;
+      .form-field {
+        width: 100%;
+      }
+    }
+  }
+}
